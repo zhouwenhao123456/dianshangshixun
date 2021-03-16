@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>密码找回</title>
+		<!-- Bootstrap core CSS -->
+		<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+		<!-- Custom styles for this template -->
+		<link th:href="@{/css/signin.css}" rel="stylesheet">
+	</head>
+	<body class="text-center">
+		<form class="form-signin" method="post" th:action="@{/forget}">
+			<img class="mb-4" th:src="@{img/timg.jpg}" alt="" width="80" height="80">
+			<h1 class="h3 mb-3 font-weight-normal">找回密码</h1>
+			<span th:if="${msg}" th:text="${msg}" style="color: red"></span>
+			<input type="text" name="username" class="form-control" placeholder="用户名" required="" autofocus="">
+			<br/>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">确定</button>
+		</form>
+	</body>
+
+</html>

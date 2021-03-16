@@ -1,0 +1,41 @@
+ public String addProduct2(Product product, @RequestParam("file") MultipartFile file) throws IOException
+{
+    int no = (int) (Math.random() * 100000000);
+    product.setNo(no);
+    try{
+    if(product.getNum() < 0){
+    return "redirect:/supplier/addProduct?flag=2";
+    }
+    if(product.getMoney() < 0){
+    return "redirect:/supplier/addProduct?flag=4";
+    }
+    productService.addProduct(product);
+    }catch (NullPointerException e) {
+    return "redirect:/supplier/addProduct?flag=3";
+    }catch (Exception e){
+    return "redirect:/supplier/addProduct?flag=1";
+    }
+    String uploadFilename = String.valueOf(product.getNo()) + ".jpg";
+    if ("".equals(file.getOriginalFilename())){//获取文件名：file.getOriginalFilename();
+    return "redirect:/supplier/stock";
+    }
+    File path = new File(ResourceUtils.getURL("classpath:").getPath());
+    if(!path.exists()) {
+    path = new File("");
+    }
+    File upload = new File(path.getAbsolutePath(),"static/img/");
+    if(!upload.exists()) {
+    upload.mkdirs();
+    }
+    InputStream is = file.getInputStream();
+    OutputStream os = new FileOutputStream(new File(upload,uploadFilename));
+    int len = 0;
+    byte[] buffer = new byte[1024];
+    while((len = is.read(buffer)) != -1){
+    os.write(buffer,0,len);
+    os.flush();
+    }
+    os.close();
+    is.close();
+    return "redirect:/supplier/stock";
+}

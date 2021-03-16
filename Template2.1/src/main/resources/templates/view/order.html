@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{components/component::head}"></head>
+
+	<body>
+	<!--顶部导航栏-->
+
+	<nav th:replace="~{components/component::view-daohang(active='product')}"></nav>
+
+	<br/><br/>
+
+	<div class="container" >
+		<div class="row">
+			<div class="col">
+
+			</div>
+			<div class="col-12">
+				<table th:if="${orders.size() ne 0}" class="table">
+					<thead class="thead-light">
+					<tr>
+						<th scope="col">订单编号</th>
+						<th scope="col">商品名称</th>
+						<th scope="col">收货人</th>
+						<th scope="col">收货地址</th>
+						<th scope="col">金额</th>
+						<th scope="col">订单状态</th>
+						<th scope="col">签&nbsp;&nbsp;&nbsp;收</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr th:each="order : ${orders}" th:class="${order.getOrderState()} eq 3 ?'table-success':'table-light'">
+							<th th:text="${order.getNo()}"></th>
+							<th th:text="${order.getProName()}"></th>
+							<th th:text="${order.getUsername()}"></th>
+							<th th:text="${order.getAddr()}"></th>
+							<th th:text="${order.getMoney()}"></th>
+							<th th:if="${order.getOrderState()} eq 0" style="color: red">未接单</th>
+							<th th:if="${order.getOrderState()} eq 1" style="color: orange">待发货</th>
+							<th th:if="${order.getOrderState()} eq 2" style="color: green">未签收</th>
+							<th th:if="${order.getOrderState()} eq 3" style="color: blue">已签收</th>
+							<th th:if="${order.getOrderState()} eq 4" style="color: red">商家已拒绝</th>
+							<th th:if="${order.getOrderState()} lt 3">&nbsp;&nbsp;
+								<a th:href="@{/isTrue/} + ${order.getNo()}" style="color: green">
+									<svg class="bi bi-check" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+										<path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 10.293l6.646-6.647a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+									</svg>
+								</a>
+							</th>
+							<th th:if="${order.getOrderState()} eq 4">&nbsp;&nbsp;
+								<a style="color: red">
+									<svg class="bi bi-x-octagon-fill" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+										<path fill-rule="evenodd" d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm.394 4.708a.5.5 0 0 0-.708-.708L8 7.293 4.854 4.146a.5.5 0 1 0-.708.708L7.293 8l-3.147 3.146a.5.5 0 0 0 .708.708L8 8.707l3.146 3.147a.5.5 0 0 0 .708-.708L8.707 8l3.147-3.146z" clip-rule="evenodd"/>
+									</svg>
+								</a>
+							</th>
+							<th th:if="${order.getOrderState()} eq 3" style="color: green">已签收</th>
+						</tr>
+					</tbody>
+				</table>
+				<!--用户没有订单-->
+				<div th:if="${msg}" class="jumbotron jumbotron-fluid">
+					<div class="container">
+						<h1 th:text="${msg}" class="display-4"></h1>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+
+			</div>
+		</div>
+	</div>
+		<!-- Bootstrap core JavaScript
+    ================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script type="text/javascript" th:src="@{/js/jquery-3.2.1.slim.min.js}" ></script>
+		<script type="text/javascript" th:src="@{/js/popper.min.js}" ></script>
+		<script type="text/javascript" th:src="@{/js/bootstrap.min.js}" ></script>
+
+		<!-- Icons -->
+		<script type="text/javascript" th:src="@{/js/feather.min.js}" ></script>
+		<script>
+			feather.replace()
+		</script>
+
+		<!-- Graphs -->
+		<script type="text/javascript" th:src="@{/js/Chart.min.js}" ></script>
+
+	<script th:replace="~{components/component::script}"></script>
+
+	</body>
+
+</html>

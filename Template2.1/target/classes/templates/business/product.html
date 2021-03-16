@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{components/component::head}"></head>
+
+	<body>
+
+	<nav th:replace="~{components/component::dingbu}"></nav>
+
+		<div class="container-fluid">
+			<div class="row">
+
+				<nav th:replace="~{components/component::cebian(active='product')}"></nav>
+
+				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+					<h2>商品列表</h2>
+					<div class="table-responsive">
+						<table class="table">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col">编号</th>
+									<th scope="col">名称</th>
+									<th scope="col">金额</th>
+									<th scope="col">库存</th>
+									<th scope="col">信息</th>
+								</tr>
+							</thead>
+							<tbody>
+							<tr th:each="product : ${products}">
+								<th th:text="${product.getNo()}"></th>
+								<th th:text="${product.getProName()}"></th>
+								<th th:text="${product.getMoney()}"></th>
+								<th th:text="${product.getNum()}"></th>
+								<th th:text="${product.getProInfo()}"></th>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</main>
+			</div>
+		</div>
+
+		<!-- Bootstrap core JavaScript
+    ================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script type="text/javascript" th:src="@{/js/jquery-3.2.1.slim.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+
+		<!-- Icons -->
+		<script type="text/javascript" th:src="@{/js/feather.min.js}"></script>
+		<script>
+			feather.replace()
+		</script>
+
+		<!-- Graphs -->
+		<script type="text/javascript" th:src="@{/js/Chart.min.js}"></script>
+
+	<script th:replace="~{components/component::script}"></script>
+
+	</body>
+
+</html>

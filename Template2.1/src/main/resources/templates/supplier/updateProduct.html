@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{components/component::head}"></head>
+
+	<body>
+
+	<nav th:replace="~{components/component::dingbu}"></nav>
+
+		<div class="container-fluid">
+			<div class="row">
+
+				<nav th:replace="~{components/component::cebian(active='stock')}"></nav>
+
+				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+					<h2>修改商品信息</h2>
+					<div class="table-responsive">
+						<h5 th:text="${msg}" style="color: red"></h5>
+						<form th:action="@{/supplier/updateProduct}" method="post"  enctype="multipart/form-data">
+							<div hidden class="form-group">
+								<label for="exampleInputText1">商品编号</label>
+								<input name="no" th:value="${product.getNo()}" type="text" class="form-control" id="exampleInputText1" aria-describedby="emailHelp">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputText2">商品名称</label>
+								<input name="proName" th:value="${product.getProName()}" type="text" class="form-control" id="exampleInputText2">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputText3">商品金额</label>
+								<input name="money" th:value="${product.getMoney()}" type="text" class="form-control" id="exampleInputText3">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputText4">商品数量</label>
+								<input name="num" th:value="${product.getNum()}" type="text" class="form-control" id="exampleInputText4">
+							</div>
+							<div class="form-group">
+								<label for="exampleFormControlSelect1">商品类别</label>
+								<select name="type" class="form-control" id="exampleFormControlSelect1">
+									<option th:selected="${product.getType()} == 0" value="0">汽车</option>
+									<option th:selected="${product.getType()} == 1" value="1">手机</option>
+									<option th:selected="${product.getType()} == 2" value="2">坚果</option>
+									<option th:selected="${product.getType()} == 3" value="3">手表</option>
+									<option th:selected="${product.getType()} == 4" value="4">老白干</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="exampleFormControlFile1">商品图片</label>
+								<input name="file" type="file" class="form-control-file" id="exampleFormControlFile1">
+							</div>
+							<div class="form-group">
+								<label for="exampleFormControlTextarea1">商品介绍</label>
+								<textarea name="proInfo" th:text="${product.getProInfo()}" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+							</div>
+							<button type="submit" class="btn btn-primary">修改</button>
+						</form>
+
+					</div>
+				</main>
+			</div>
+		</div>
+
+		<!-- Bootstrap core JavaScript
+    ================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script type="text/javascript" th:src="@{/js/jquery-3.2.1.slim.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+
+		<!-- Icons -->
+		<script type="text/javascript" th:src="@{/js/feather.min.js}"></script>
+		<script>
+			feather.replace()
+		</script>
+
+		<!-- Graphs -->
+		<script type="text/javascript" th:src="@{/js/Chart.min.js}"></script>
+
+	<script th:replace="~{components/component::script}"></script>
+
+	</body>
+
+</html>

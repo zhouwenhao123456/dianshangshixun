@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{components/component::head}"></head>
+
+	<body>
+
+	<nav th:replace="~{components/component::dingbu}"></nav>
+
+		<div class="container-fluid">
+			<div class="row">
+
+				<nav th:replace="~{components/component::cebian(active='customer')}"></nav>
+
+				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+					<h2>客户列表</h2>
+					<div class="table-responsive">
+						<table class="table">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col">用户名</th>
+									<th scope="col">电话</th>
+									<th scope="col">Email</th>
+									<th scope="col">订单编号</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="user : ${users}">
+									<th th:text="${user.getUsername()}"></th>
+									<th th:text="${user.getPhone()}"></th>
+									<th>
+
+										<!--<a class="btn btn-sm btn-success" th:href="@{/business/sendEmail/} + ${user.getEmail()}">-->
+										<a  th:href="@{/business/sendEmail/} + ${user.getEmail()}">
+											[[${user.getEmail()}]]
+											<svg class="bi bi-box-arrow-left" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+												<path fill-rule="evenodd" d="M4.354 11.354a.5.5 0 000-.708L1.707 8l2.647-2.646a.5.5 0 10-.708-.708l-3 3a.5.5 0 000 .708l3 3a.5.5 0 00.708 0z" clip-rule="evenodd"/>
+												<path fill-rule="evenodd" d="M11.5 8a.5.5 0 00-.5-.5H2a.5.5 0 000 1h9a.5.5 0 00.5-.5z" clip-rule="evenodd"/>
+												<path fill-rule="evenodd" d="M14 13.5a1.5 1.5 0 001.5-1.5V4A1.5 1.5 0 0014 2.5H7A1.5 1.5 0 005.5 4v1.5a.5.5 0 001 0V4a.5.5 0 01.5-.5h7a.5.5 0 01.5.5v8a.5.5 0 01-.5.5H7a.5.5 0 01-.5-.5v-1.5a.5.5 0 00-1 0V12A1.5 1.5 0 007 13.5h7z" clip-rule="evenodd"/>
+											</svg>
+										</a>
+									</th>
+									<th>
+										<p  th:each="order : ${user.getOrder()}" th:text="${order.getNo()}"> <br/></p>
+									</th>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</main>
+			</div>
+		</div>
+
+		<!-- Bootstrap core JavaScript
+    ================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script type="text/javascript" th:src="@{/js/jquery-3.2.1.slim.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+
+		<!-- Icons -->
+		<script type="text/javascript" th:src="@{/js/feather.min.js}"></script>
+		<script>
+			feather.replace()
+		</script>
+
+		<!-- Graphs -->
+		<script type="text/javascript" th:src="@{/js/Chart.min.js}"></script>
+
+	<script th:replace="~{components/component::script}"></script>
+
+	</body>
+
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.awei.dao.OrderMapper">
+
+    <cache/>
+
+    <select id="getOrders" resultType="Order">
+        select * from t_order
+    </select>
+
+    <delete id="deleteOrder" parameterType="int">
+        delete from t_order where no = #{no}
+    </delete>
+
+    <update id="acceptOrder" >
+        update t_order
+        set isAccept = #{isAccept}, orderState = #{orderState}
+        where no = #{no}
+    </update>
+
+    <update id="send" >
+        update t_order
+        set sendState = #{sendState},orderState = #{orderState}
+        where no = #{no}
+    </update>
+
+    <select id="getOrderByUsername" resultType="Order">
+        select * from t_order where username = #{username}
+    </select>
+
+    <insert id="addOrder" parameterType="Order">
+        insert into t_order
+        (username, proName, addr, money, orderState, payState, isAccept, sendState)
+        values (#{username},#{proName},#{addr},#{money},#{orderState},#{payState},#{isAccept},#{sendState})
+    </insert>
+
+    <select id="getOrderByNo" resultType="Order">
+        select * from t_order where no = #{no}
+    </select>
+
+</mapper>

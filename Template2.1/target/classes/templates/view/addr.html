@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{components/component::head}"></head>
+
+	<body>
+	<!--顶部导航栏-->
+
+	<nav th:replace="~{components/component::view-daohang(active='product')}"></nav>
+
+	<br/><br/>
+
+	<div class="container" >
+		<div class="row">
+			<div class="col">
+
+			</div>
+			<div class="col-12">
+				<div class="table-responsive">
+					<form th:action="@{/ok}" method="post"  enctype="multipart/form-data">
+						<div class="form-group">
+							<input th:value="${product.getId()}" hidden name="id" type="text" class="form-control" id="exampleInputText1" aria-describedby="emailHelp">
+						</div>
+						<div class="form-group">
+							<input th:value="${product.getProName()}" hidden name="proName" type="text" class="form-control" id="exampleInputText4" aria-describedby="emailHelp">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputText5">收货人</label>
+							<input disabled th:value="${product.getUsername()}" type="text" class="form-control" id="exampleInputText5">
+						</div>
+						<div class="form-group">
+							<input th:value="${product.getUsername()}" hidden name="username" type="text" class="form-control" id="exampleInputText" aria-describedby="emailHelp">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputText2">收货地址</label>
+							<input name="addr" type="text" class="form-control" id="exampleInputText2">
+						</div>
+						<div class="form-group">
+							<input th:value="${product.getMoney()}" hidden name="money" type="text" class="form-control" id="exampleInputText3">
+						</div>
+						<button type="submit" class="btn btn-primary">提交</button>
+					</form>
+
+				</div>
+			</div>
+			<div class="col">
+
+			</div>
+		</div>
+	</div>
+
+		<!-- Bootstrap core JavaScript
+    ================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script type="text/javascript" th:src="@{/js/jquery-3.2.1.slim.min.js}" ></script>
+		<script type="text/javascript" th:src="@{/js/popper.min.js}" ></script>
+		<script type="text/javascript" th:src="@{/js/bootstrap.min.js}" ></script>
+
+		<!-- Icons -->
+		<script type="text/javascript" th:src="@{/js/feather.min.js}" ></script>
+		<script>
+			feather.replace()
+		</script>
+
+		<!-- Graphs -->
+		<script type="text/javascript" th:src="@{/js/Chart.min.js}" ></script>
+
+	<script th:replace="~{components/component::script}"></script>
+
+	</body>
+
+</html>

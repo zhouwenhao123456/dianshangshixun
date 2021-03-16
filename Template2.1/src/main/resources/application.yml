@@ -1,0 +1,27 @@
+spring:
+  resources:
+    static-locations: classpath:static/,file:static/
+  datasource:
+    username: root
+    password: zwh19991219
+    url: jdbc:mysql://localhost:3306/template?useSSL=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  mail:
+    username: 903985300@qq.com  #你的邮箱     然后别忘了在util包下的发送邮件的邮箱换成你的
+    password: hqyryexjrejpbfgj #密码  在邮箱的设置里有smtp服务的密码，是qq邮箱设置第三方服务的授权码
+    host: smtp.qq.com
+    #开启加密验证  只有qq要求
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.awei.pojo
+
+
+
+
+

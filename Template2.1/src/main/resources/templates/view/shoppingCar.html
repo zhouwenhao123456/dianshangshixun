@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{components/component::head}"></head>
+
+	<body>
+	<!--顶部导航栏-->
+
+	<nav th:replace="~{components/component::view-daohang(active='product')}"></nav>
+
+	<br/><br/>
+
+	<div class="container" >
+		<div class="row">
+			<div class="col">
+
+			</div>
+			<div class="col-12">
+				<table th:if="${shoppingCars.size() ne 0}" class="table">
+					<thead class="thead-light">
+					<tr>
+						<th scope="col">商品</th>
+						<th scope="col">价格</th>
+						<th scope="col">&nbsp;&nbsp;处&nbsp;&nbsp;&nbsp;理</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr th:each="product : ${shoppingCars}">
+						<th th:text="${product.getProName()}"></th>
+						<th th:text="${product.getMoney()}"></th>
+						<th>
+							<a style="color: green">
+								<!--确定-->
+								<a th:href="@{/ok/} + ${product.getId()}" style="color: green">
+									<svg class="bi bi-check" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+										<path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 10.293l6.646-6.647a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+									</svg>
+								</a> &nbsp;&nbsp;&nbsp;
+								<!--删除-->
+								<a th:href="@{/delete/} + ${product.getId()}" style="color: red">
+									<svg class="bi bi-x" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+										<path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+										<path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
+									</svg>
+								</a>
+							</a>
+						</th>
+					</tr>
+					</tbody>
+				</table>
+				<!--购物车中没有商品-->
+				<div th:if="${msg}" class="jumbotron jumbotron-fluid">
+					<div class="container">
+						<h1 th:text="${msg}" class="display-4"></h1>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+
+			</div>
+		</div>
+	</div>
+		<!-- Bootstrap core JavaScript
+    ================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script type="text/javascript" th:src="@{/js/jquery-3.2.1.slim.min.js}" ></script>
+		<script type="text/javascript" th:src="@{/js/popper.min.js}" ></script>
+		<script type="text/javascript" th:src="@{/js/bootstrap.min.js}" ></script>
+
+		<!-- Icons -->
+		<script type="text/javascript" th:src="@{/js/feather.min.js}" ></script>
+		<script>
+			feather.replace()
+		</script>
+
+		<!-- Graphs -->
+		<script type="text/javascript" th:src="@{/js/Chart.min.js}" ></script>
+
+	<script th:replace="~{components/component::script}"></script>
+
+	</body>
+
+</html>

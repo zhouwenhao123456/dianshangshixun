@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.awei.dao.ProductMapper">
+
+    <cache/>
+
+    <select id="getProducts" resultType="Product">
+        select * from t_product
+    </select>
+
+    <insert id="addProduct" parameterType="Product">
+        insert into t_product (no,proName, proInfo, money, num,type)
+        values (#{no},#{proName},#{proInfo},#{money},#{num},#{type})
+    </insert>
+
+    <delete id="deleteProduct" parameterType="int">
+        delete from t_product where no = #{no}
+    </delete>
+
+    <select id="getProductByNo" parameterType="int" resultType="Product">
+        select * from t_product where no = #{no}
+    </select>
+
+    <update id="updateProduct" parameterType="Product">
+        update t_product
+        set proName = #{proName}, money = #{money}, num = #{num}, proInfo = #{proInfo}, type = #{type}
+        where no = #{no}
+    </update>
+
+    <!--<update id="send" >-->
+         <!--update t_order-->
+         <!--set sendState = #{sendState},orderState = #{orderState},isSend=#{isSend}-->
+         <!--where no = #{no}-->
+    <!--</update>-->
+
+    <select id="getProductBySearch" resultType="Product">
+        select * from t_product where money = #{money}
+    </select>
+
+    <select id="getProductBySearch2" resultType="Product">
+        select * from t_product where proName = #{proName}
+    </select>
+
+    <select id="getProductByType" resultType="Product">
+        select * from t_product where type = #{type}
+    </select>
+
+    <update id="updateProductByName">
+        update t_product set num = #{num} where proName = #{proName}
+    </update>
+
+    <select id="getProductByLike" resultType="Product">
+        select * from t_product where proName like #{string}
+    </select>
+
+</mapper>
